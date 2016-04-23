@@ -104,27 +104,7 @@ jade@1.11.0 node_modules/jade
 
 ### Project structure and files
 
-*package.json*
-
-```json
-{
-  "name": "students-courses",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
-  "dependencies": {
-    "body-parser": "~1.13.2",
-    "cookie-parser": "~1.3.5",
-    "debug": "~2.2.0",
-    "express": "~4.13.1",
-    "jade": "~1.11.0",
-    "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
-  }
-}
-```
+![](_misc/default%20project%20structure.png)
 
 *bin/www*
 
@@ -221,6 +201,80 @@ function onListening() {
 }
 ```
 
+*public/stylesheets/style.css*
+
+```css
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+```
+
+*routes/index.js*
+
+```javascript
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+```
+
+*routes/users.js*
+
+```javascript
+var express = require('express');
+var router = express.Router();
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+  res.send('respond with a resource');
+});
+
+module.exports = router;
+```
+
+*views/error.jade*
+
+```jade
+extends layout
+
+block content
+  h1= message
+  h2= error.status
+  pre #{error.stack}
+```
+
+*views/index.jade*
+
+```jade
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+```
+
+*views/layout.jade*
+
+```jade
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    block content
+```
+
 *app.js*
 
 ```javascript
@@ -285,6 +339,29 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 ```
+
+*package.json*
+
+```json
+{
+  "name": "students-courses",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
+  }
+}
+```
+
 
 ### Designing the RESTful Web API 
 
