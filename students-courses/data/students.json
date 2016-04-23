@@ -1,0 +1,18 @@
+[
+	{
+		"name": "Albert Einstein",
+		"id": 10,
+		"grade": 8,
+		"emailId": "eistein.albert@gmail.com",
+		"profilepic": "http://localhost:3000/images/profile/einstein.jpg",
+		"courses": ["AngularJS", "ReactJS", "NodeJS", "MeteorJS"],
+	},
+	{
+		"name": "Isaac Newton",
+		"id": 11,
+		"grade": 8,		
+		"emailId": "isaac.newton@gmail.com",
+		"profilepic": "http://localhost:3000/images/profile/newton.jpg",
+		"courses": ["AngularJS", "ReactJS", "NodeJS", "Android"],
+	}
+]

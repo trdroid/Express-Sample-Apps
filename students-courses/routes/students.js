@@ -1,21 +1,21 @@
 var fs = require('fs');
 
 function readData() {
-	var filename = '';
+	var filename = '../data/students.json';
 	return fs.readFileSync(filename);
 } 
 
-function getAllStudents() {
+function getStudents() {
 	return JSON.parse(readData());
 }
 
-function getStudent(rollnumber) {
-	var students = getAllStudents().result;
+function getStudent(id) {
+	var students = getStudents();
 
 	for(var iter = 0; iter < students.length; iter++) {
 		var student = students[iter];
 
-		if(student.rollnumber == rollnumber) {
+		if(student.id == id) {
 			return student;
 		}
 	}
@@ -23,13 +23,63 @@ function getStudent(rollnumber) {
 	return null;
 }
 
-module.exports.getAllStudents
+function getCourses() {
+	var students = getStudents();
+	var allCourses = new Array();
 
+	for(var iter = 0; iter < students.length; iter++) {
+		var coursesOfAStudent = students[iter].courses;
 
-/*
-GET	/students	Get all students
-GET	/students/:roll-number	Get the student with a specified roll number
-DELETE	/students/:roll-number	Delete a student with a specified roll number
-GET	/courses	Get all courses that students subscribed to
-DELETE	/courses/:course-name	Delete the course with a specified course name
-*/
+		for(var iter1 = 0; iter1 < coursesOfAStudent.length; iter1++) {
+			var course = coursesOfAStudent[iter1];
+			if(allCourses.indexOf(course) == -1) {
+				allCourses.push(course);
+			}
+		}
+	}
+
+	return allCourses;
+}
+
+function getStudentsOfACourse(course) {
+	var students = getStudents();
+	var studentsOfACourse = new Array();
+	
+	for(var iter = 0; iter < students.length; iter++) {
+		var studentName = students[iter].name;
+		var coursesOfAStudent = students[iter].courses;
+
+		if(coursesOfAStudent.indexOf(course) != -1 && studentsOfACourse.indexOf(studentName) == -1) {
+			studentsOfACourse.push(studentName);
+		}
+	}
+
+	return studentsOfACourse;
+}
+
+function genericQuery(property, value) {
+	var students = getStudents();
+	var results = new Array();
+
+	for(var iter = 0; iter < students.length; iter++) {
+		if(students[iter][property] === value) {
+			results.push(students[iter]);
+		}
+	}
+
+	return results;	
+}
+
+module.exports.getStudents = getStudents;
+module.exports.getStudent = getStudent;
+module.exports.genericQuery = genericQuery;
+
+//console.log(getStudents());
+
+//console.log(getStudent(11));
+
+//console.log(getCourses());
+
+//console.log(getStudentsOfACourse("Android"));
+
+console.log(genericQuery("id", 10));
