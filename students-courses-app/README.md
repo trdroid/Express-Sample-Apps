@@ -500,3 +500,31 @@ module.exports.genericQuery = genericQuery;
 ]
 ```
 
+![](_misc/Project%20Structure%20with%20data%20and%20model.png)
+
+### Testing the model
+
+To test the functions, uncomment the one of the lines in *models/students.js* (say console.log(getStudents()) and run the following command
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ node students.js
+[ { name: 'Albert Einstein',
+    id: 10,
+    grade: 8,
+    emailId: 'eistein.albert@gmail.com',
+    profilepic: 'http://localhost:3000/images/profile/einstein.jpg',
+    courses: [ 'AngularJS', 'ReactJS', 'NodeJS', 'MeteorJS' ] },
+  { name: 'Isaac Newton',
+    id: 11,
+    grade: 8,
+    emailId: 'isaac.newton@gmail.com',
+    profilepic: 'http://localhost:3000/images/profile/newton.jpg',
+    courses: [ 'AngularJS', 'ReactJS', 'NodeJS', 'Android' ] } ]
+```
+
+### Adding Assets
+
+Add assets for students and courses
+
+![](_misc/Project%20Structure%202.png)
+
