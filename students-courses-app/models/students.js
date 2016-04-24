@@ -1,7 +1,7 @@
 var fs = require('fs');
 
 function readData() {
-	var filename = '../data/students.json';
+	var filename = './data/students.json';
 	return fs.readFileSync(filename);
 } 
 
