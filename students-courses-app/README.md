@@ -504,7 +504,7 @@ module.exports.genericQuery = genericQuery;
 
 ### Testing the model
 
-To test the functions, uncomment the one of the lines in *models/students.js* (say console.log(getStudents()) and run the following command
+To test the functions, uncomment one of the lines in *models/students.js* (say console.log(getStudents()) and run the following command
 
 ```
 droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ node students.js
@@ -520,6 +520,32 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ nod
     emailId: 'isaac.newton@gmail.com',
     profilepic: 'http://localhost:3000/images/profile/newton.jpg',
     courses: [ 'AngularJS', 'ReactJS', 'NodeJS', 'Android' ] } ]
+```
+
+Uncommenting console.log(getStudent(11));
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ node students.js
+{ name: 'Isaac Newton',
+  id: 11,
+  grade: 8,
+  emailId: 'isaac.newton@gmail.com',
+  profilepic: 'http://localhost:3000/images/profile/newton.jpg',
+  courses: [ 'AngularJS', 'ReactJS', 'NodeJS', 'Android' ] }
+```
+
+Uncommenting console.log(getCourses());
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ node students.js
+[ 'AngularJS', 'ReactJS', 'NodeJS', 'MeteorJS', 'Android' ]
+```
+
+Uncommenting console.log(getStudentsOfACourse("Android"));
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app/models$ node students.js
+[ 'Isaac Newton' ]
 ```
 
 ### Adding Assets
