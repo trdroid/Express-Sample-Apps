@@ -641,6 +641,8 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 ```
 
+![](_misc/require.png)
+
 ### Start the server
 
 ```
@@ -653,7 +655,7 @@ droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
 
 ### Testing in the browser
 
-
+![](_misc/Error%20-%20No%20such%20file.png)
 
 On the server side
 
