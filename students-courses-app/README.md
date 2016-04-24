@@ -725,6 +725,23 @@ function getStudents() {
 
 but because this function is run as part of *app.js*, the path to *students.json* should be relative to *app.js*, so change the path to './data/students.json'
 
+*routes/students.js* 
+
+```javascript
+var fs = require('fs');
+
+function readData() {
+	var filename = './data/students.json';  <-------------
+	return fs.readFileSync(filename);
+} 
+
+function getStudents() {
+	return JSON.parse(readData());
+}
+
+...
+```
+
 **Test now**
 
 ![](_misc/Getting%20students%20to%20browser.png)
