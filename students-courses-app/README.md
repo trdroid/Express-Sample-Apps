@@ -370,8 +370,8 @@ List out the set of operations that the API performs
 | HTTP Method        | URI           |  Action to perform |
 | ------------- |:-------------|:-----|
 | GET     | /students | Get all students |
-| GET      | /students/:roll-number      |   Get the student with a specified roll number |
-| DELETE | /students/:roll-number      |    Delete a student with a specified roll number |
+| GET      | /students/:id      |   Get the student with a specified id |
+| DELETE | /students/:id      |    Delete a student with a specified id |
 | GET     | /courses | Get all courses that students subscribed to |
 | DELETE     | /courses/:course-name | Delete the course with a specified course name |
 
