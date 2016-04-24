@@ -377,4 +377,126 @@ List out the set of operations that the API performs
 
 Define methods in a module and export them so that they can be bound to the API operations listed above.
 
+### Defining methods to support API operations
+
+Create a directory models under the main project directory and a file under it to contain the methods. The model gets its data from a pre-populated json file.
+
+*models/students.js*
+
+```javascript
+var fs = require('fs');
+
+function readData() {
+	var filename = '../data/students.json';
+	return fs.readFileSync(filename);
+} 
+
+function getStudents() {
+	return JSON.parse(readData());
+}
+
+function getStudent(id) {
+	var students = getStudents();
+
+	for(var iter = 0; iter < students.length; iter++) {
+		var student = students[iter];
+
+		if(student.id == id) {
+			return student;
+		}
+	}
+
+	return null;
+}
+
+function getCourses() {
+	var students = getStudents();
+	var allCourses = new Array();
+
+	for(var iter = 0; iter < students.length; iter++) {
+		var coursesOfAStudent = students[iter].courses;
+
+		for(var iter1 = 0; iter1 < coursesOfAStudent.length; iter1++) {
+			var course = coursesOfAStudent[iter1];
+			if(allCourses.indexOf(course) == -1) {
+				allCourses.push(course);
+			}
+		}
+	}
+
+	return allCourses;
+}
+
+function getStudentsOfACourse(course) {
+	var students = getStudents();
+	var studentsOfACourse = new Array();
+	
+	for(var iter = 0; iter < students.length; iter++) {
+		var studentName = students[iter].name;
+		var coursesOfAStudent = students[iter].courses;
+
+		if(coursesOfAStudent.indexOf(course) != -1 && studentsOfACourse.indexOf(studentName) == -1) {
+			studentsOfACourse.push(studentName);
+		}
+	}
+
+	return studentsOfACourse;
+}
+
+function genericQuery(property, value) {
+	var students = getStudents();
+	var results = new Array();
+
+	for(var iter = 0; iter < students.length; iter++) {
+		if(students[iter][property] === value) {
+			results.push(students[iter]);
+		}
+	}
+
+	return results;	
+}
+
+module.exports.getStudents = getStudents;
+module.exports.getStudent = getStudent;
+module.exports.getCourses = getCourses;
+module.exports.getStudentsOfACourse = getStudentsOfACourse;
+module.exports.genericQuery = genericQuery;
+
+/**
+	Testing functions in the module
+*/
+
+//console.log(getStudents());
+
+//console.log(getStudent(11));
+
+//console.log(getCourses());
+
+//console.log(getStudentsOfACourse("Android"));
+
+//console.log(genericQuery("id", 10));
+```
+
+*data/students.json*
+
+```json
+[
+	{
+		"name": "Albert Einstein",
+		"id": 10,
+		"grade": 8,
+		"emailId": "eistein.albert@gmail.com",
+		"profilepic": "http://localhost:3000/images/profile/einstein.jpg",
+		"courses": ["AngularJS", "ReactJS", "NodeJS", "MeteorJS"]
+	},
+	{
+		"name": "Isaac Newton",
+		"id": 11,
+		"grade": 8,		
+		"emailId": "isaac.newton@gmail.com",
+		"profilepic": "http://localhost:3000/images/profile/newton.jpg",
+		"courses": ["AngularJS", "ReactJS", "NodeJS", "Android"]
+	}
+]
+```
 
