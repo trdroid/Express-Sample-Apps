@@ -723,4 +723,19 @@ function getStudents() {
 }
 ```
 
-but 
+but because this function is run as part of *app.js*, the path to *students.json* should be relative to *app.js*, so change the path to './data/students.json'
+
+**Test now**
+
+
+
+On the server side
+
+```
+droid@droidserver:~/onBB/Express.js-Sample-Apps/students-courses-app$ npm start
+
+> students-courses@0.0.0 start /home/droid/onBB/Express.js-Sample-Apps/students-courses-app
+> node ./bin/www
+
+GET /students 200 15.778 ms - 395
+```
