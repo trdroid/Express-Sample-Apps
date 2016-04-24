@@ -727,7 +727,7 @@ but because this function is run as part of *app.js*, the path to *students.json
 
 **Test now**
 
-
+![](_misc/Getting%20students%20to%20browser.png)
 
 On the server side
 
