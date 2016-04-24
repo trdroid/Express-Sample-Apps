@@ -554,6 +554,16 @@ Add assets for students and courses
 
 ![](_misc/Project%20Structure%202.png)
 
+### Mapping routes
+
+| HTTP Method        | URI           |  Function that performs the action |
+| ------------- |:-------------|:-----|
+| GET     | /students | getStudents() |
+| GET      | /students/:id      |   getStudent(id) |
+| DELETE | /students/:id      |     |
+| GET     | /courses | getCourses() |
+| GET     | /courses/:course | getStudentsOfACourse(course) |
+| DELETE     | /courses/:course-name | Delete the course with a specified course name |
 
 ### Defining routes
 
