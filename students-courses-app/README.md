@@ -554,3 +554,18 @@ Add assets for students and courses
 
 ![](_misc/Project%20Structure%202.png)
 
+
+### Defining routes
+
+```javascript
+var express = require('express');
+var router = express.Router();
+
+var studentsModel= require('../models/students.js');
+
+router.get('/', function(req, res, next) {
+	res.json(studentsModel.getStudents());  
+});
+
+module.exports = router;
+```
