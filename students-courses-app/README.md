@@ -651,7 +651,11 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 ```
 
+The routes defined in *routes/students.js* respond to routes of the form "domain-name.com/students", as is defined by the line "app.use('/students', students);" in *app.js*
+
 ![](_misc/require.png)
+
+*app.js* loads *./routes/students.js* amongst others, which in turn loads *../models/students.js*
 
 ### Start the server
 
@@ -681,5 +685,42 @@ GET /stylesheets/style.css 304 5.466 ms - -
 
 **Reason why this happened**
 
+When the browser requests for http://localhost:3000/students, the callback to the following route defined in *routes/students.js* 
 
+```javascript
+router.get('/', function(req, res, next) {
+	res.json(studentsModel.getStudents());  
+});
+```
+is executed as part of *app.js*, because of the lines
 
+```javascript
+var students = require('./routes/students');
+
+app.use('/students', students);
+```
+
+i.e. 
+
+Requesting http://localhost:3000/students results in the execution of the callback function as part of *app.js*
+
+```javascript
+function(req, res, next) {
+	res.json(studentsModel.getStudents());  
+}
+```
+
+"studentsModel.getStudents()" attempts to access *../data/students.json* as shown in the snippet of *models/students.js*
+
+```javascript
+function readData() {
+	var filename = '../data/students.json';
+	return fs.readFileSync(filename);
+} 
+
+function getStudents() {
+	return JSON.parse(readData());
+}
+```
+
+but 
