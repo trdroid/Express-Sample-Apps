@@ -767,6 +767,8 @@ cors@2.7.1 node_modules/cors
 └── vary@1.1.0
 ```
 
+Enable CORS module for the entire application as shown below
+
 *app.js*
 
 ```javascript
