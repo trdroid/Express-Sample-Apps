@@ -562,7 +562,7 @@ Add assets for students and courses
 | GET      | /students/:id      |   getStudent(id) |
 | DELETE | /students/:id      |     |
 | GET     | /courses | getCourses() |
-| GET     | /courses/:course | getStudentsOfACourse(course) |
+| GET     | /courses/:course-name | getStudentsOfACourse(course) |
 | DELETE     | /courses/:course-name | Delete the course with a specified course name |
 
 ### Defining routes
